@@ -1,0 +1,36 @@
+#include<Keypad.h>
+const byte Rows = 4;//¦æ
+const byte Cols = 4;//¦C
+
+// Value
+char keys[Rows][Cols] = {
+  {'F','E','D','C'},
+  {'B','3','6','9'},
+  {'A','2','5','8'},
+  {'0','1','4','7'}
+};
+//Pins
+byte rowPins[Rows] = {5,4,3,2};
+byte colPins[Cols]= {11,10,9,8};
+//make object
+Keypad keypad = 
+Keypad(makeKeymap(keys),rowPins,colPins,Rows,Cols);
+
+void setup() {
+  // put your setup code here, to run once:
+  Serial.begin(9600); 
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  if(Serial.available()){
+  
+    char k = keypad.getKey();
+
+    if(k != NO_KEY){
+      Serial.println(k);
+    }  
+
+  }
+  
+}
